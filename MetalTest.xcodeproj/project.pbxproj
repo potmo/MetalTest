@@ -14,6 +14,7 @@
 		871342482AD5F5960022726F /* Renderer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871342472AD5F5960022726F /* Renderer.swift */; };
 		8713424A2AD5FACC0022726F /* Shaders.metal in Sources */ = {isa = PBXBuildFile; fileRef = 871342492AD5FACB0022726F /* Shaders.metal */; };
 		871CAD5F2AD5ECDF0006667F /* MetalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 871CAD5E2AD5ECDF0006667F /* MetalView.swift */; };
+		874EA2E52ADF32EB00259448 /* ComputeParticles.swift in Sources */ = {isa = PBXBuildFile; fileRef = 874EA2E42ADF32EB00259448 /* ComputeParticles.swift */; };
 		878B31552AD5EBC300BC773C /* MetalTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B31542AD5EBC300BC773C /* MetalTestApp.swift */; };
 		878B31592AD5EBC600BC773C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 878B31582AD5EBC600BC773C /* Assets.xcassets */; };
 		878B315D2AD5EBC600BC773C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 878B315C2AD5EBC600BC773C /* Preview Assets.xcassets */; };
@@ -27,6 +28,7 @@
 		871342472AD5F5960022726F /* Renderer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Renderer.swift; sourceTree = "<group>"; };
 		871342492AD5FACB0022726F /* Shaders.metal */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.metal; path = Shaders.metal; sourceTree = "<group>"; };
 		871CAD5E2AD5ECDF0006667F /* MetalView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetalView.swift; sourceTree = "<group>"; };
+		874EA2E42ADF32EB00259448 /* ComputeParticles.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComputeParticles.swift; sourceTree = "<group>"; };
 		878B31512AD5EBC300BC773C /* MetalTest.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MetalTest.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		878B31542AD5EBC300BC773C /* MetalTestApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetalTestApp.swift; sourceTree = "<group>"; };
 		878B31582AD5EBC600BC773C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				871342472AD5F5960022726F /* Renderer.swift */,
 				8707C9B02AD87A2D008BD8AA /* ComputeShader.swift */,
 				8707C9B42AD89D7A008BD8AA /* ParticleState.swift */,
+				874EA2E42ADF32EB00259448 /* ComputeParticles.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -168,6 +171,7 @@
 				8713424A2AD5FACC0022726F /* Shaders.metal in Sources */,
 				871342482AD5F5960022726F /* Renderer.swift in Sources */,
 				871CAD5F2AD5ECDF0006667F /* MetalView.swift in Sources */,
+				874EA2E52ADF32EB00259448 /* ComputeParticles.swift in Sources */,
 				8707C9B52AD89D7A008BD8AA /* ParticleState.swift in Sources */,
 				8704D4B32AD5F028004051A7 /* ContentView.swift in Sources */,
 				8707C9B12AD87A2D008BD8AA /* ComputeShader.swift in Sources */,

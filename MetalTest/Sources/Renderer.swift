@@ -110,17 +110,20 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         // FIXME: This should be  actual delta tine
         let deltaTime: Float = 1.0 / Float(view.preferredFramesPerSecond)
 
-        let maxParticles = 100
+        let maxParticles = 200
 
-        if particleState.particles.count < maxParticles, Int.random(in: 0 ..< 50) == 1 {
+        /*
+        if particleState.particles.count < maxParticles, Int.random(in: 0 ..< 2) == 1 {
             let newParticle = Particle(index: (particleState.particles.last?.index ?? 0) + 1,
-                                       position: simd_float2(viewPort.width, viewPort.height) * Float.random(in: 0.0 ..< 1.0),
+                                       position: simd_float2(Float.random(in: 0 ... viewPort.width),
+                                                             Float.random(in: 0 ... viewPort.height)),
                                        predictedPosition: simd_packed_float2(0, 0),
-                                       velocity: simd_packed_float2(Float.random(in: -1 ... 1), Float.random(in: -1 ... 1)) * 500,
+                                       velocity: simd_packed_float2(Float.random(in: -1.0 ... 1.0), Float.random(in: -1.0 ... 1.0)) * 50,
                                        density: 0,
                                        mass: 10)
             particleState.particles.append(newParticle)
         }
+         */
 
         particleState.loop(deltaTime: deltaTime, viewport: viewPort)
 

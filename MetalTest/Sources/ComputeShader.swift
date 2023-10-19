@@ -44,7 +44,7 @@ actor ComputeShader {
         encoder.setComputePipelineState(pipelineState)
     }
 
-    func compute(a: Float, b: Float) async -> Float {
+    func add(a: Float, b: Float) async -> Float {
         let input: [Float] = [a, b]
 
         let buffer = device.makeBuffer(bytes: input, length: MemoryLayout<Float>.stride * input.count, options: [])
@@ -68,7 +68,4 @@ actor ComputeShader {
         Logger().debug("\(input[0]) + \(input[1]) = \(result)")
         return result
     }
-
-  
 }
-
