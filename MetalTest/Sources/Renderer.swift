@@ -110,22 +110,22 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         // FIXME: This should be  actual delta tine
         let deltaTime: Float = 1.0 / Float(view.preferredFramesPerSecond)
 
-        let maxParticles = 200
+        let maxParticles = 2000
 
         /*
-        if particleState.particles.count < maxParticles, Int.random(in: 0 ..< 2) == 1 {
-            let newParticle = Particle(index: (particleState.particles.last?.index ?? 0) + 1,
-                                       position: simd_float2(Float.random(in: 0 ... viewPort.width),
-                                                             Float.random(in: 0 ... viewPort.height)),
-                                       predictedPosition: simd_packed_float2(0, 0),
-                                       velocity: simd_packed_float2(Float.random(in: -1.0 ... 1.0), Float.random(in: -1.0 ... 1.0)) * 50,
-                                       density: 0,
-                                       mass: 10)
-            particleState.particles.append(newParticle)
-        }
-         */
+         if particleState.particles.count < maxParticles, Int.random(in: 0 ..< 2) == 1 {
+             let newParticle = Particle(index: (particleState.particles.last?.index ?? 0) + 1,
+                                        position: simd_float2(Float.random(in: 0 ... viewPort.width),
+                                                              Float.random(in: 0 ... viewPort.height)),
+                                        predictedPosition: simd_packed_float2(0, 0),
+                                        velocity: simd_packed_float2(Float.random(in: -1.0 ... 1.0), Float.random(in: -1.0 ... 1.0)) * 50,
+                                        density: 0,
+                                        mass: 10)
+             particleState.particles.append(newParticle)
+         }
+          */
 
-        particleState.loop(deltaTime: deltaTime, viewport: viewPort)
+        particleState.loop(deltaTime: deltaTime)
 
         let fragments = particleState.particles.map(\.position).map { position in
             return FragmentData(position: position)
@@ -150,8 +150,8 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
         // let renderPassDescriptor = MTLRenderPassDescriptor()
         renderPassDescriptor.colorAttachments[0].texture = drawable.texture
         renderPassDescriptor.colorAttachments[0].clearColor = MTLClearColorMake(1, 1, 1, 1)
-        renderPassDescriptor.colorAttachments[0].loadAction = .clear
-        renderPassDescriptor.colorAttachments[0].storeAction = .store
+        renderPassDescriptor.colorAttachments[0].loadAction = .dontCare
+        renderPassDescriptor.colorAttachments[0].storeAction = .dontCare
 
         guard let commandBuffer = metalCommandQueue.makeCommandBuffer() else {
             fatalError("failed creating command buffer")
@@ -176,6 +176,7 @@ class Renderer: NSObject, MTKViewDelegate, ObservableObject {
 
         commandBuffer.present(drawable)
         commandBuffer.commit()
+
     }
 }
 

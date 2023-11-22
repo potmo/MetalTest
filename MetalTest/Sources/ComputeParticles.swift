@@ -12,7 +12,6 @@ class ComputeParticles {
         }
         self.device = device
 
-
         guard let library = device.makeDefaultLibrary() else { // .makeLibrary(filepath: "compute.metallib")
             fatalError("not able to create default library")
         }
@@ -32,7 +31,6 @@ class ComputeParticles {
                  inVelocities: [simd_packed_float2],
                  inDensities: [Float]) -> (positions: [simd_packed_float2],
                                            velocities: [simd_packed_float2]) {
-
         guard let commandQueue = device.makeCommandQueue() else {
             fatalError("not able to create command queue")
         }
@@ -49,6 +47,7 @@ class ComputeParticles {
 
         let inputPositionsBuffer = device.makeBuffer(bytes: inPositions, length: MemoryLayout<simd_packed_float2>.stride * inPositions.count, options: [])
         encoder.setBuffer(inputPositionsBuffer, offset: 0, index: 0)
+        // encoder.setBytes(inPositions, length: MemoryLayout<simd_packed_float2>.stride * inPositions.count, index: 0)
 
         let inputVelocitiesBuffer = device.makeBuffer(bytes: inVelocities, length: MemoryLayout<simd_packed_float2>.stride * inVelocities.count, options: [])
         encoder.setBuffer(inputVelocitiesBuffer, offset: 0, index: 1)
@@ -70,7 +69,7 @@ class ComputeParticles {
 
         let maxThreadgroups = min(pipelineState.maxTotalThreadsPerThreadgroup, inPositions.count)
         let numThreadgroups = MTLSize(width: maxThreadgroups, height: 1, depth: 1)
-        let threadsPerThreadgroup = MTLSize(width: inPositions.count, height: 1, depth: 1)
+        let threadsPerThreadgroup = MTLSize(width: 1024, height: 1, depth: 1)
         encoder.dispatchThreadgroups(numThreadgroups, threadsPerThreadgroup: threadsPerThreadgroup)
         encoder.endEncoding()
         commandBuffer.commit()

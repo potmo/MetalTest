@@ -18,6 +18,9 @@
 		878B31552AD5EBC300BC773C /* MetalTestApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 878B31542AD5EBC300BC773C /* MetalTestApp.swift */; };
 		878B31592AD5EBC600BC773C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 878B31582AD5EBC600BC773C /* Assets.xcassets */; };
 		878B315D2AD5EBC600BC773C /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 878B315C2AD5EBC600BC773C /* Preview Assets.xcassets */; };
+		87AC64E92AEAF56300AFA2F4 /* ARViewContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AC64E82AEAF56300AFA2F4 /* ARViewContainer.swift */; };
+		87AC64EB2AEAFE7F00AFA2F4 /* CameraController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87AC64EA2AEAFE7F00AFA2F4 /* CameraController.swift */; };
+		87CB31B82AEDAF1000286525 /* Scene.usdz in Resources */ = {isa = PBXBuildFile; fileRef = 87CB31B72AEDAF1000286525 /* Scene.usdz */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		878B31582AD5EBC600BC773C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		878B315A2AD5EBC600BC773C /* MetalTest.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MetalTest.entitlements; sourceTree = "<group>"; };
 		878B315C2AD5EBC600BC773C /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		87AC64E82AEAF56300AFA2F4 /* ARViewContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARViewContainer.swift; sourceTree = "<group>"; };
+		87AC64EA2AEAFE7F00AFA2F4 /* CameraController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CameraController.swift; sourceTree = "<group>"; };
+		87CB31B72AEDAF1000286525 /* Scene.usdz */ = {isa = PBXFileReference; lastKnownFileType = file.usdz; name = Scene.usdz; path = MetalTest/Scene.usdz; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -68,6 +74,7 @@
 			children = (
 				871342492AD5FACB0022726F /* Shaders.metal */,
 				8707C9B22AD87E02008BD8AA /* ComputeShaders.metal */,
+				87CB31B72AEDAF1000286525 /* Scene.usdz */,
 				878B31652AD5EC3200BC773C /* Sources */,
 				878B31582AD5EBC600BC773C /* Assets.xcassets */,
 				878B315A2AD5EBC600BC773C /* MetalTest.entitlements */,
@@ -94,6 +101,8 @@
 				8707C9B02AD87A2D008BD8AA /* ComputeShader.swift */,
 				8707C9B42AD89D7A008BD8AA /* ParticleState.swift */,
 				874EA2E42ADF32EB00259448 /* ComputeParticles.swift */,
+				87AC64E82AEAF56300AFA2F4 /* ARViewContainer.swift */,
+				87AC64EA2AEAFE7F00AFA2F4 /* CameraController.swift */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -157,6 +166,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				878B315D2AD5EBC600BC773C /* Preview Assets.xcassets in Resources */,
+				87CB31B82AEDAF1000286525 /* Scene.usdz in Resources */,
 				878B31592AD5EBC600BC773C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -173,6 +183,8 @@
 				871CAD5F2AD5ECDF0006667F /* MetalView.swift in Sources */,
 				874EA2E52ADF32EB00259448 /* ComputeParticles.swift in Sources */,
 				8707C9B52AD89D7A008BD8AA /* ParticleState.swift in Sources */,
+				87AC64E92AEAF56300AFA2F4 /* ARViewContainer.swift in Sources */,
+				87AC64EB2AEAFE7F00AFA2F4 /* CameraController.swift in Sources */,
 				8704D4B32AD5F028004051A7 /* ContentView.swift in Sources */,
 				8707C9B12AD87A2D008BD8AA /* ComputeShader.swift in Sources */,
 				8707C9B32AD87E02008BD8AA /* ComputeShaders.metal in Sources */,

@@ -3,10 +3,10 @@ using namespace metal;
 
 constant float pi = 3.14159265359;
 
-constant float particleMass = 20.0;
-constant float smoothingRadius = 100.0;
-constant float pressureMultiplier = 100;
-constant float targetDensity = 3.75;
+constant float particleMass = 2.0;
+constant float smoothingRadius = 0.2;
+constant float pressureMultiplier = 0.5;
+constant float targetDensity = 20000.0;
 
 kernel void add(const device float2 *in [[ buffer(0) ]],
                 device float  *out [[ buffer(1) ]],
@@ -45,7 +45,7 @@ float smoothingKernelDerivative(float distance, float radius)  {
 }
 
 //NOTE: 200 particles max
-float calculateDensity(simd_packed_float2 samplePoint, Particle particles[200], int particleCount) {
+float calculateDensity(simd_packed_float2 samplePoint, Particle particles[10000], int particleCount) {
     float density = 0.0;
 
     for (int i = 0; i < particleCount; i++) {
@@ -72,9 +72,9 @@ float calculateSharedPressureForce(float density1, float density2)  {
 
 // NOTE: max 200 particles
 simd_packed_float2 calculatePressureForce(uint particleIndex,
-                                          const device simd_packed_float2 positions[200],
-                                          const device float densities[200],
-                                          const device uint *particleCount) {
+                                          constant simd_packed_float2 positions[10000],
+                                          constant float densities[10000],
+                                          constant uint *particleCount) {
     simd_packed_float2 pressureForce = simd_packed_float2(0, 0);
     for (uint i = 0; i < *particleCount; i ++) {
 
@@ -107,13 +107,13 @@ simd_packed_float2 calculatePressureForce(uint particleIndex,
     return pressureForce;
 }
 
-//NOTE: Max 200 particles
-kernel void updateParticles(const device simd_packed_float2 inPositions [[ buffer(0) ]][200],
-                            const device simd_packed_float2 inVelocities [[ buffer(1) ]][200],
-                            const device float inDensities [[ buffer(2) ]][200],
-                            device simd_packed_float2 outPositions [[ buffer(3) ]][200],
-                            device simd_packed_float2 outVelocities [[ buffer(4) ]][200],
-                            const device uint *particleCount [[ buffer(5)]],
+//NOTE: Max 2000 particles
+kernel void updateParticles(constant simd_packed_float2 inPositions [[ buffer(0) ]][10000],
+                            constant simd_packed_float2 inVelocities [[ buffer(1) ]][10000],
+                            constant float inDensities [[ buffer(2) ]][10000],
+                            device simd_packed_float2 outPositions [[ buffer(3) ]][10000],
+                            device simd_packed_float2 outVelocities [[ buffer(4) ]][10000],
+                            constant uint *particleCount [[ buffer(5)]],
                             uint id [[ thread_position_in_grid ]]) {
 
     // exit if out of bounds
@@ -132,8 +132,8 @@ kernel void updateParticles(const device simd_packed_float2 inPositions [[ buffe
 
     outPositions[id] =  inPositions[id] + outVelocities[id] * deltaTime;
 
-    float width = 1200.0;
-    float height = 1200.0;
+    float width = 10.0;
+    float height = 10.0;
     if (outPositions[id].x < 0 || outPositions[id].x > width) {
         outPositions[id].x = min(width, max(0.0, outPositions[id].x));
         outVelocities[id].x *= -1.0;

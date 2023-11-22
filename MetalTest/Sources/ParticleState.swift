@@ -3,31 +3,31 @@ import simd
 
 class ParticleState {
     var particles: [Particle]
-    private let smoothingRadius: Float = 100.0
+    private let smoothingRadius: Float = 0.4
     private let targetDensity: Float = 3.15
-    private let pressureMultiplier: Float = 100.0
+    private let pressureMultiplier: Float = 1.0
 
     private let compute: ComputeParticles
 
     init() {
         let width: Float = 10.0
-        let height: Float = 20.0
+        let height: Float = 10.0
 
-        self.particles = stride(from: 0.0, to: height, by: 1.0).flatMap { (x: Float) -> [Particle] in
-            return stride(from: 0.0, to: width, by: 1.0).map { (y: Float) -> Particle in
+        self.particles = stride(from: 0.0, through: height, by: 0.2).flatMap { (x: Float) -> [Particle] in
+            return stride(from: 0.0, through: width, by: 0.2).map { (y: Float) -> Particle in
 
                 let index = Int(y * width + x)
-                let position = simd_packed_float2(400 + x * 50, 400 + y * 50)
+                let position = simd_packed_float2(x, y)
                 return Particle(index: index,
                                 position: position, // set starting
                                 predictedPosition: position,
-                                velocity: simd_packed_float2(Float.random(in: -1 ..< 1), Float.random(in: -1 ..< 1)) * 50.0,
+                                velocity: simd_normalize(simd_packed_float2(Float.random(in: -1 ..< 1), Float.random(in: -1 ..< 1))) * 0.1,
                                 density: 0,
                                 mass: 20)
             }
         }
 
-        if particles.count > 200 {
+        if particles.count > 10000 {
             fatalError("the particle array length can be max 100 due to the shader")
         }
 
@@ -127,7 +127,7 @@ class ParticleState {
         return result
     }
 
-    func loop(deltaTime: Float, viewport: Viewport) {
+    func loop(deltaTime: Float) {
         for i in particles.indices {
             particles[i].predictedPosition = particles[i].position + particles[i].velocity * deltaTime
         }
